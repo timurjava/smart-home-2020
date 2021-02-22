@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop.Reader;
+package ru.sbt.mipt.oop.reader;
 
 import com.google.gson.Gson;
 import ru.sbt.mipt.oop.SmartHome;
