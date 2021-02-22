@@ -13,8 +13,8 @@ public class SmartHomeReaderJson implements SmartHomeReader {
     @Override
     public SmartHome read(String jsonName) {
         try {
-            Gson gson = new Gson();
-            String json = new String(Files.readAllBytes(Paths.get(jsonName)));
+            gson = new Gson();
+            json = new String(Files.readAllBytes(Paths.get(jsonName)));
         } catch (IOException e) {
             e.printStackTrace();
         }
