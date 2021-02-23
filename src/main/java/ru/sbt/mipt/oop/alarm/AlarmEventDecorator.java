@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop.alarm;
 
-import ru.sbt.mipt.oop.events.Event;
+import ru.sbt.mipt.oop.events.SensorEvent;
 import ru.sbt.mipt.oop.handlers.Handler;
 import ru.sbt.mipt.oop.sender.Sender;
 
@@ -17,14 +17,14 @@ public class AlarmEventDecorator implements Handler {
     }
 
     @Override
-    public void EventProcessing(Event event) {
+    public void EventProcessing(SensorEvent event) {
         if (alarm.isDeactivated()) {
             handler.EventProcessing(event);
         } else if (alarm.isActivated()) {
             alarm.alert();
-            //messageSender.send("Alert! " + event.getClass().getName() + " happened");
+            messageSender.send("Alert! " + event.getClass().getName() + " happened");
         } else if (alarm.isAlerted()) {
-            //messageSender.send(event.getClass().getName() + " happened");
+            messageSender.send(event.getClass().getName() + " happened");
         }
 
     }

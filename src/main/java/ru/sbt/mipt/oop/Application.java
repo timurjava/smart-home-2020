@@ -1,5 +1,8 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.alarm.Alarm;
+import ru.sbt.mipt.oop.alarm.AlarmActivationEventHandler;
+import ru.sbt.mipt.oop.alarm.AlarnDeactivationEvnetHandler;
 import ru.sbt.mipt.oop.events.EventHandlerChooser;
 import ru.sbt.mipt.oop.events.SensorEvent;
 import ru.sbt.mipt.oop.events.SensorEventGenerator;
@@ -17,13 +20,14 @@ public class Application {
 
     public static void main(String... args)  {
         SmartHomeReaderJson reader = new SmartHomeReaderJson();
+        Alarm alarm = new Alarm();
         SmartHome smartHome = reader.read("smart-home-1.js");
         SensorEventGenerator sensorEventGenerator = new SensorEventGenerator();
         SensorEvent event = sensorEventGenerator.getNextEvent();
         EventHandlerChooser eventHandlerChooser = new EventHandlerChooser(sensorEventGenerator);
         CommandSender commandSender = new CommandSender();
         List<Handler> handlers = Arrays.asList(new LightEventHandler(smartHome),new HallEventHandler(smartHome,
-                commandSender), new DoorEventHandler(smartHome));
+                commandSender), new DoorEventHandler(smartHome), new AlarnDeactivationEvnetHandler(alarm), new AlarmActivationEventHandler(alarm));
         eventHandlerChooser.choosehandler(smartHome, event, handlers);
     }
 
