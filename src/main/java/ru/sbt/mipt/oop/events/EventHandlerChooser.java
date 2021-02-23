@@ -20,6 +20,7 @@ public class EventHandlerChooser {
                 handler.EventProcessing(event);
             }
             event = eventGenerator.getNextEvent();
+
         }
     }
 }
