@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.events.EventHandlerChooser;
+import ru.sbt.mipt.oop.events.SensorEvent;
 import ru.sbt.mipt.oop.events.SensorEventGenerator;
 import ru.sbt.mipt.oop.reader.SmartHomeReaderJson;
 import ru.sbt.mipt.oop.sender.CommandSender;

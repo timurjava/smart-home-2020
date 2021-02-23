@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.actions;
 
 import ru.sbt.mipt.oop.Light;
 import ru.sbt.mipt.oop.Room;
-import ru.sbt.mipt.oop.SensorEvent;
+import ru.sbt.mipt.oop.events.SensorEvent;
 
 public class TurnOffTheLights implements Action {
     private String id;

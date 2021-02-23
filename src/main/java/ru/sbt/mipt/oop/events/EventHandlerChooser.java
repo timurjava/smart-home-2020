@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.events;
 
-import ru.sbt.mipt.oop.SensorEvent;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.handlers.Handler;
 
@@ -14,7 +13,7 @@ public class EventHandlerChooser {
         this.eventGenerator = eventGenerator;
     }
 
-    public void choosehandler(SmartHome smartHome, SensorEvent event, List<Handler> handlers){
+    public void choosehandler(SmartHome smartHome, Event event, List<Handler> handlers){
         while (event != null) {
             System.out.println("Got event: " + event);
             for (Handler handler:handlers) {
