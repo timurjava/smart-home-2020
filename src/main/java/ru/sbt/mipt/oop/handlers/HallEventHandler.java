@@ -3,16 +3,16 @@ package ru.sbt.mipt.oop.handlers;
 import ru.sbt.mipt.oop.*;
 import ru.sbt.mipt.oop.actions.Action;
 import ru.sbt.mipt.oop.actions.HallDoorClose;
-import ru.sbt.mipt.oop.sender.ComandSender;
+import ru.sbt.mipt.oop.sender.Sender;
 
 
 public class HallEventHandler implements Handler{
     private SmartHome smartHome;
-    private final ComandSender comandSender;
+    private final Sender sender;
 
-    public HallEventHandler(SmartHome smartHome, ComandSender comandSender){
+    public HallEventHandler(SmartHome smartHome, Sender sender){
         this.smartHome = smartHome;
-        this.comandSender = comandSender;
+        this.sender = sender;
     }
 
     @Override
