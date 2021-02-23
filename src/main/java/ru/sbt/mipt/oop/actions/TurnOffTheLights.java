@@ -6,6 +6,8 @@ import ru.sbt.mipt.oop.events.SensorEvent;
 
 public class TurnOffTheLights implements Action {
     private String id;
+    private String dislocation;
+
 
     public TurnOffTheLights(SensorEvent event) {
         this.id = event.getObjectId();
@@ -13,7 +15,6 @@ public class TurnOffTheLights implements Action {
 
     @Override
     public void doAction(Object object) {
-        String dislocation = null;
         if (object instanceof Room) {
             dislocation = ((Room) object).getName();
         }

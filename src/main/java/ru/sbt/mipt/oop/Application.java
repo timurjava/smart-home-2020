@@ -28,7 +28,7 @@ public class Application {
         CommandSender commandSender = new CommandSender();
         List<Handler> handlers = Arrays.asList(new LightEventHandler(smartHome),new HallEventHandler(smartHome,
                 commandSender), new DoorEventHandler(smartHome), new AlarnDeactivationEvnetHandler(alarm), new AlarmActivationEventHandler(alarm));
-        eventHandlerChooser.choosehandler(smartHome, event, handlers);
+        eventHandlerChooser.choosehandler(alarm, event, handlers,commandSender);
     }
 
 }

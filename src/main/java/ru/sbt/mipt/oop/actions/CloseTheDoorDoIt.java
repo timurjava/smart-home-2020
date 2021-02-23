@@ -6,6 +6,8 @@ import ru.sbt.mipt.oop.events.SensorEvent;
 
 public class CloseTheDoorDoIt implements Action {
     private String id;
+    private String dislocation;
+
 
     public CloseTheDoorDoIt(SensorEvent event){
         this.id = event.getObjectId();
@@ -13,7 +15,6 @@ public class CloseTheDoorDoIt implements Action {
 
     @Override
     public void doAction(Object object) {
-        String dislocation = null;
         if(object instanceof Room){
             dislocation = ((Room) object).getName();
         }

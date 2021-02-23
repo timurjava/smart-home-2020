@@ -8,7 +8,7 @@ import ru.sbt.mipt.oop.SmartHome;
 public class HallDoorClose implements Action{
     private String id;
     private SmartHome smartHome;
-    String dislocation;
+    private String dislocation;
 
     public HallDoorClose(SensorEvent event, SmartHome smartHome) {
         this.id = event.getObjectId();
