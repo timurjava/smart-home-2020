@@ -22,9 +22,9 @@ public class AlarmEventDecorator implements Handler {
             handler.EventProcessing(event);
         } else if (alarm.isActivated()) {
             alarm.alert();
-            //messageSender.send("Alert! " + event.getClass().getName() + " happened");
+            messageSender.send("Alert! " + event.getClass().getName() + " happened");
         } else if (alarm.isAlerted()) {
-            //messageSender.send(event.getClass().getName() + " happened");
+            messageSender.send(event.getClass().getName() + " happened");
         }
 
     }
