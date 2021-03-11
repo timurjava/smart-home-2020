@@ -13,5 +13,5 @@ public enum DoorTypeEvent {
         }
     };
 
-    public abstract States getState();
+    abstract States getState();
 }

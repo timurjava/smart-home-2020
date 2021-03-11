@@ -13,12 +13,22 @@ public enum States {
     },
     DOOR_CLOSED {
         public String getString() {
-            return " was closed.";
+            return " was opened.";
         }
     },
     DOOR_OPEN {
         public String getString() {
-            return " was opened.";
+            return " was closed.";
+        }
+    },
+    DOOR_LOCKED{
+        public String getString() {
+            return " was locked.";
+        }
+    },
+    DOOR_UNLOCKED{
+        public String getString() {
+            return " was unlocked.";
         }
     },
     ALARM_ACTIVATE {

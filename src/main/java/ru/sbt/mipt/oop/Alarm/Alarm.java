@@ -1,64 +1,65 @@
 package ru.sbt.mipt.oop.Alarm;
 
 import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
+import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.SmartHome;
+import ru.sbt.mipt.oop.States;
 
-public class Alarm {
-    private AlarmState state;
+public class Alarm implements Actionable {
+    private AlarmStateInterface state;
     private SmartHome smartHome;
     private final int timeSleep;
     private final String id;
-    private final String code;
 
     public Alarm(SmartHome smartHome) {
         this.id = "id";
         this.timeSleep = 5;
-        this.state = new AlarmDeactivated(this);
+        this.state = new AlarmDeactivated();
         this.smartHome = smartHome;
-        this.code = "standardCode";
     }
 
-    public Alarm(SmartHome smartHome, String code) {
-        this.id = "id";
-        this.timeSleep = 5;
-        this.state = new AlarmDeactivated(this);
-        this.smartHome = smartHome;
-        this.code = code;
-    }
-
-    public Alarm(SmartHome smartHome, int timeSleep, String id, String code) {
+    public Alarm(SmartHome smartHome, int timeSleep, String id) {
         this.timeSleep = timeSleep;
         this.id = id;
-        this.state = new AlarmDeactivated(this);
+        this.state = new AlarmDeactivated();
         this.smartHome = smartHome;
-        this.code = code;
     }
 
-    public void activate() {
-        state.activate();
+    public void activate(String code) {
+        state = state.activate(code);
     }
 
     public void deactivate(String code) {
-        state.deactivate(code);
+        state = state.deactivate(code);
+        if (state instanceof AlarmActiveState) {
+            startAlarm();
+        }
     }
 
-    public void setState(AlarmState state) {
-        this.state = state;
+    public void takeHomeEvent(Event event) {
+        state.takeHomeEvent(event);
     }
 
-    public void danger() {
-        state.danger();
+    private void startAlarm() {
+        startSiren();
+        while (true) {
+            try {
+                Thread.sleep(timeSleep * 1000);
+            } catch (InterruptedException e) {
+                System.out.println(e.toString());
+            }
+            smartHome.getRooms().forEach(room -> {
+                room.getLights().forEach(light -> {
+                    light.setState((Math.random() > 0.5) ? States.LIGHT_OFF : States.LIGHT_ON);
+                    System.out.println(light.getString());
+                });
+            });
+            sendMessage();
+        }
     }
 
-    public boolean checkCode(String code) {
-        return code.equals(this.code);
-    }
-
-    public void execute(Action action) {
-        action.execute(this);
-    }
-
-    public AlarmState getState() {
+    public AlarmStateInterface getState() {
         return state;
     }
 
@@ -66,4 +67,20 @@ public class Alarm {
         return smartHome;
     }
 
+    private void sendMessage() {
+        System.out.println("Sending message on number " + smartHome.getPhoneNumber());
+    }
+
+    private void startSiren() {
+        System.out.println("!!!!!!!Siren started!!!!!!!");
+    }
+
+    public String getString() {
+        return "Alarm" + (state.getString());
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
+    }
 }

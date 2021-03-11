@@ -1,37 +1,24 @@
 package ru.sbt.mipt.oop.Events;
 
+import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 
-public class DoorEvent implements Event {
-    private DoorTypeEvent type;
-    private String objectId;
+public class DoorEvent extends Event implements GetStateToChange {
+//    private TypeEvent type;
 
-    public DoorEvent(String objectId, DoorTypeEvent type) {
-        this.objectId = objectId;
-        this.type = type;
+    public DoorEvent(String id, TypeEvent type) {
+        super(id,type);
+//        this.type = type;
     }
 
     @Override
     public States getState() {
-        return type.getState();
-    }
-
-    @Override
-    public String getObjectId() {
-        return objectId;
+        return this.type.getState();
     }
 
     @Override
     public String getType() {
-        return type.toString();
-    }
-
-    @Override
-    public String toString() {
-        return "SensorEvent{" +
-                "type=" + this.getType() +
-                ", objectId='" + this.getObjectId() + '\'' +
-                '}';
+        return super.type.toString();
     }
 
 }

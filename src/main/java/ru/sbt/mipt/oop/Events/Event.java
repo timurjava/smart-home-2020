@@ -1,18 +1,41 @@
 package ru.sbt.mipt.oop.Events;
 
+import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 
-public interface Event {
+//import ru.sbt.mipt.oop.EventHandlers.RoomObjectEventHandler;
 
-//    Event(String objectId) {
-//        this.objectId = objectId;
+public class Event implements GetStateToChange {
+    private final String objectId;
+    TypeEvent type;
+
+    Event(String objectId,TypeEvent type) {
+        this.objectId = objectId;
+        this.type = type;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public String getType() {
+        return "";
+    }
+
+//    public BaseEventHandler getHandler() {
+//        return new RoomObjectEventHandler(this);
 //    }
 
-    String getObjectId();
+    @Override
+    public States getState() {
+        return States.DOOR_CLOSED;
+    }
 
-    String getType();
-
-    States getState();
-
-    String toString();
+    @Override
+    public String toString() {
+        return "SensorEvent{" +
+                "type=" + this.getType() +
+                ", objectId='" + this.getObjectId() + '\'' +
+                '}';
+    }
 }

@@ -1,14 +1,14 @@
 package ru.sbt.mipt.oop.Events;
 
+import ru.sbt.mipt.oop.GetStateToChange;
 import ru.sbt.mipt.oop.States;
 
-public class LightEvent implements Event {
-    private LightTypeEvent type;
-    private String objectId;
+public class LightEvent extends Event implements GetStateToChange {
+//    private TypeEvent type;
 
-    public LightEvent(String objectId, LightTypeEvent type) {
-        this.objectId = objectId;
-        this.type = type;
+    public LightEvent(String id, TypeEvent type) {
+        super(id,type);
+//        this.type = type;
     }
 
     @Override
@@ -17,21 +17,7 @@ public class LightEvent implements Event {
     }
 
     @Override
-    public String getObjectId() {
-        return objectId;
-    }
-
-    @Override
     public String getType() {
         return type.toString();
     }
-
-    @Override
-    public String toString() {
-        return "SensorEvent{" +
-                "type=" + this.getType() +
-                ", objectId='" + this.getObjectId() + '\'' +
-                '}';
-    }
-
 }
