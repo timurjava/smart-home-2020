@@ -1,22 +1,23 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.RoomObjects;
 
-import javax.swing.*;
-import java.util.function.Function;
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.Actionable;
+import ru.sbt.mipt.oop.States;
 
-public class Light extends RoomObject implements RoomObjectInterface, Actionable {
+public class Light implements BaseRoomObject, Actionable {
     private States isOn;
+    final String id;
 
     public Light(String id, String isOn) {
-        super(id);
+        this.id = id;
         this.isOn = States.valueOf(isOn);
     }
 
     public Light(String id, States isOn) {
-        super(id);
+        this.id = id;
         this.isOn = isOn;
     }
 
-    @Override
     public String getId() {
         return id;
     }

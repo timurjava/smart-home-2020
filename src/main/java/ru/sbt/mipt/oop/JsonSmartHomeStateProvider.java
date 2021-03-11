@@ -3,14 +3,8 @@ package ru.sbt.mipt.oop;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 public class JsonSmartHomeStateProvider implements SmartHomeProvider {
     String path;
@@ -31,9 +25,7 @@ public class JsonSmartHomeStateProvider implements SmartHomeProvider {
             return new SmartHome();
         }
         SmartHome smartHome = gson.fromJson(json, SmartHome.class);
-        List<String> names = Arrays.asList("home", "name");
         return smartHome;
     }
-
 
 }

@@ -1,16 +1,14 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.RoomObjects.Door;
+import ru.sbt.mipt.oop.RoomObjects.Light;
+
 import java.util.Collection;
 
 public class Room implements Actionable {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
-    private SmartHome home;
-
-    public void setHome(SmartHome home) {
-        this.home = home;
-    }
 
     public Room(Collection<Light> lights, Collection<Door> doors, String name) {
         this.lights = lights;
