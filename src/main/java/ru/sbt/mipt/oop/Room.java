@@ -1,10 +1,8 @@
 package ru.sbt.mipt.oop;
 
-
-
 import java.util.Collection;
 
-public class Room {
+public class Room implements Actionable {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
@@ -33,10 +31,15 @@ public class Room {
     }
 
 
-    public void setHome(Collection<RoomObject> o){
-        for (RoomObject ro: o) {
-            ro.setHome(this.home);
-        }
+    @Override
+    public void execute(Action action) {
+        lights.forEach(light -> {
+            light.execute(action);
+        });
+        doors.forEach(door -> {
+            door.execute(action);
+        });
+        action.execute(this);
     }
 
 }

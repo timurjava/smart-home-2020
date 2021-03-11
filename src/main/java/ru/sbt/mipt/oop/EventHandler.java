@@ -1,45 +1,40 @@
 package ru.sbt.mipt.oop;
 
-
-
 class EventHandler {
-    private SmartHome home;
+    private SmartHome smartHome;
 
     EventHandler(SmartHome home) {
-        this.home = home;
+        this.smartHome = home;
     }
 
     void handleEvent(Event event) {
         System.out.println("Got event: " + event);
-        RoomObject ro = findObject(event);
-        if ((ro != null)) {
-            checkHallDoorEvent(event);
-            ro.setState(event.getState());//set state of event
-            System.out.println(ro.getString());//print info about event
-        } else {
-            System.out.println("Object not found or act is not right");
-        }
+        smartHome.execute(event.getAction());
+        smartHome.execute(event.getActionToPrint());
+        checkHallDoorEvent(event);
     }
 
-    private void checkHallDoorEvent(Event event){
-        if (event instanceof DoorEvent){
-            RoomObject ro = home.findObject(event.getObjectId());
-            if (ro instanceof Door){
-                if((home.findRoomForDoor(((Door)ro).getId()).getName().equals("hall")&&(event.getType().equals("DOOR_CLOSE")))){
-                    home.lightOff();
+    private void checkHallDoorEvent(Event event) {
+        if (event instanceof DoorEvent) {
+            smartHome.execute(obj -> {
+                if ((event instanceof DoorEvent) && (event.getType().equals("DOOR_CLOSE"))) {
+                    smartHome.execute(objectUp -> {
+                        if ((objectUp instanceof Room)) {
+                            ((Room) objectUp).execute(object -> {
+                                if ((object instanceof Door) && (((Door) object).getId().equals(event.getObjectId())) && (((Room) objectUp).getName().equals("hall"))) {
+                                    smartHome.execute(o -> {
+                                        if (o instanceof Light) {
+                                            ((Light) o).setState(States.LIGHT_OFF);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
                 }
-            }
+            });
         }
     }
 
-    private RoomObject findObject(Event event){
-        if((event instanceof LightEvent)){
-            return home.findLight(event.getObjectId());
-        }
-        if((event instanceof DoorEvent)){
-            return home.findDoor(event.getObjectId());
-        }
-        return null;
-    }
 
 }

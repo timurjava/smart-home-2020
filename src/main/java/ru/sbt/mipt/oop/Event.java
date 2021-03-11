@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Event implements GetStateToChange{
+public class Event implements GetStateToChange, GetAction, GetActionToPrint {
     private final String objectId;
 
     Event(String objectId) {
@@ -11,7 +11,7 @@ public class Event implements GetStateToChange{
         return objectId;
     }
 
-    public String getType(){
+    public String getType() {
         return "";
     }
 
@@ -21,10 +21,19 @@ public class Event implements GetStateToChange{
     }
 
     @Override
-    public String toString(){
+    public Action getAction() {
+        return null;
+    }
+
+    public String toString() {
         return "SensorEvent{" +
                 "type=" + this.getType() +
                 ", objectId='" + this.getObjectId() + '\'' +
                 '}';
+    }
+
+    @Override
+    public Action getActionToPrint() {
+        return null;
     }
 }

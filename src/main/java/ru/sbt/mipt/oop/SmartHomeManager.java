@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop;
 
+import java.lang.reflect.Field;
+import java.util.Collection;
 
 public class SmartHomeManager {
     private SmartHome home;
@@ -13,12 +15,11 @@ public class SmartHomeManager {
         this.eventGenerator = eventGenerator;
     }
 
-    public void startTrackingEvents(){
+    public void startTrackingEvents() {
         Event event = eventGenerator.generateEvent();
         while (event != null) {
             eventHandler.handleEvent(event);
             event = eventGenerator.generateEvent();
         }
     }
-
 }
