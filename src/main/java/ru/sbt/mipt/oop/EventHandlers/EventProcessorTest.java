@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
 import org.junit.Assert;
+import ru.sbt.mipt.oop.Alarm.SMSSender;
+import ru.sbt.mipt.oop.Alarm.Sender;
 import ru.sbt.mipt.oop.Events.*;
 import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Door;
@@ -8,12 +10,14 @@ import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class EventProcessorTest {
 
     Light light1 = new Light("1", "LIGHT_OFF");
+    Sender sender = new SMSSender();
     Light light2 = new Light("2", "LIGHT_ON");
     Door door1 = new Door("3", "DOOR_OPEN");
     List<Door> doors = Arrays.asList(door1);
@@ -23,7 +27,10 @@ class EventProcessorTest {
     Event event1 = new LightEvent("1", LightTypeEvent.LIGHT_ON);
     List<Room> roomList = Arrays.asList(room);
     SmartHome smartHome = new SmartHome(roomList);
-    EventProcessor eventProcessor = new EventProcessor(smartHome);
+    EventProcessor eventProcessor = new EventProcessor(new ArrayList<EventHandler>(Arrays.asList(new SecurityProcessorDecorator(new LightEventHandler(smartHome), sender, smartHome ),
+            new SecurityProcessorDecorator(new DoorEventHandler(smartHome), sender, smartHome ),
+            new SecurityProcessorDecorator(new HallDoorEventHandler(smartHome), sender, smartHome ),
+            new AlarmEventHandler(smartHome))));
 
 
     @org.junit.jupiter.api.Test

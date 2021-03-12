@@ -29,11 +29,6 @@ class AlarmTest {
         assertTrue(al.getState() instanceof AlarmDeactivated);
     }
 
-    @Test
-    void AlarmStandardCreationSmartHome() {
-        Alarm al = new Alarm(smartHome);
-        assertEquals(al.getSmartHome(), smartHome);
-    }
 
     @Test
     void DeactivatedAlarmAfterActivateBecomeActivated() {

@@ -4,9 +4,6 @@ import ru.sbt.mipt.oop.States;
 
 public interface Event {
 
-//    Event(String objectId) {
-//        this.objectId = objectId;
-//    }
 
     String getObjectId();
 
@@ -14,5 +11,4 @@ public interface Event {
 
     States getState();
 
-    String toString();
 }

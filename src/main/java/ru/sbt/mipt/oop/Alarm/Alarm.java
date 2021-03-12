@@ -62,8 +62,5 @@ public class Alarm {
         return state;
     }
 
-    public SmartHome getSmartHome() {
-        return smartHome;
-    }
 
 }
