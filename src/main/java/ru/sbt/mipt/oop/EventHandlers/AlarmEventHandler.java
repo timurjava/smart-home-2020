@@ -1,14 +1,12 @@
 package ru.sbt.mipt.oop.EventHandlers;
 
 import ru.sbt.mipt.oop.Alarm.Alarm;
-import ru.sbt.mipt.oop.Alarm.AlarmActivated;
 import ru.sbt.mipt.oop.Events.AlarmEvent;
 import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
 public class AlarmEventHandler implements EventHandler {
-    private Event event;
     private SmartHome smartHome;
 
     public AlarmEventHandler(SmartHome smartHome) {
@@ -25,8 +23,6 @@ public class AlarmEventHandler implements EventHandler {
                     } else if (event.getState().equals(States.ALARM_DEACTIVATE)) {
                         ((Alarm) obj).deactivate(((AlarmEvent) event).getCode());
                     }
-                } else if (((Alarm) obj).getState() instanceof AlarmActivated) {
-                    ((Alarm) obj).danger();
                 }
             }
 

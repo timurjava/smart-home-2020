@@ -7,19 +7,17 @@ import java.util.Collection;
 
 public class SmartHome implements Actionable {
     private Collection<Room> rooms;
-    String phoneNumber;
     Alarm alarm;
 
     public SmartHome() {
         rooms = new ArrayList<>();
-        this.phoneNumber = "8-800-555-35-35";
-        alarm = new Alarm(this);
+        alarm = new Alarm("code");
     }
 
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
-        this.phoneNumber = "8-800-555-35-35";
-        alarm = new Alarm(this);
+        alarm = new Alarm("code");
+
     }
 
     public void addRoom(Room room) {
@@ -35,9 +33,6 @@ public class SmartHome implements Actionable {
         return alarm;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 
     @Override
     public void execute(Action action) {

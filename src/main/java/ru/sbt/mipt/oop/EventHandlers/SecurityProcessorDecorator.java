@@ -20,16 +20,16 @@ public class SecurityProcessorDecorator implements EventHandler {
     @Override
     public void handleEvent(Event event) {
         Alarm alarm = smartHome.getAlarm();
-        if (alarm.getState() instanceof AlarmDeactivated ||(alarm.getState() instanceof AlarmActiveState && event instanceof AlarmEvent)) {
+        if (alarm.isDeactivated()||(alarm.isInDanger() && event instanceof AlarmEvent)) {
             wrappeeProcessor.handleEvent(event);
         }
 
-        if (alarm.getState() instanceof AlarmActivated ||alarm.getState() instanceof AlarmActiveState){
+        if (alarm.isActivated() || alarm.isInDanger()){
             messageSender.send("Try change state of home; " + event);
         }
 
-        if (alarm.getState() instanceof AlarmActivated){
-            alarm.setState(new AlarmActiveState(alarm));
+        if (alarm.isActivated()){
+            alarm.trigger();
         }
     }
 }

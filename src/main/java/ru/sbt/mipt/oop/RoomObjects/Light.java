@@ -4,7 +4,7 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.States;
 
-public class Light implements BaseRoomObject, Actionable {
+public class Light implements  Actionable {
     private States isOn;
     final String id;
 
@@ -23,7 +23,7 @@ public class Light implements BaseRoomObject, Actionable {
     }
 
 
-    @Override
+
     public void setState(States on) {
         isOn = on;
     }

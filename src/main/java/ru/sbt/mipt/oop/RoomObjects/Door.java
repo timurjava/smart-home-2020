@@ -4,7 +4,7 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Actionable;
 import ru.sbt.mipt.oop.States;
 
-public class Door implements BaseRoomObject, Actionable {
+public class Door implements  Actionable {
     private States isOpen;
     final String id;
 
@@ -22,7 +22,7 @@ public class Door implements BaseRoomObject, Actionable {
         return id;
     }
 
-    @Override
+
     public void setState(States open) {
         isOpen = open;
     }

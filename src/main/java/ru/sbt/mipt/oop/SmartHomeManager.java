@@ -4,9 +4,9 @@ import ru.sbt.mipt.oop.EventHandlers.EventProcessor;
 import ru.sbt.mipt.oop.Events.Event;
 
 public class SmartHomeManager {
-    private SmartHome home;
-    private EventProcessor eventProcessor;
-    private EventGenerator eventGenerator;
+    private final SmartHome home;
+    private final EventProcessor eventProcessor;
+    private final EventGenerator eventGenerator;
 
 
     public SmartHomeManager(SmartHome home, EventProcessor eventProcessor, EventGenerator eventGenerator) {
