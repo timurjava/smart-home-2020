@@ -11,12 +11,12 @@ public class SmartHome implements Actionable {
 
     public SmartHome() {
         rooms = new ArrayList<>();
-        alarm = new Alarm("code");
+        alarm = new Alarm("1234");
     }
 
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
-        alarm = new Alarm("code");
+        alarm = new Alarm("1234");
 
     }
 
