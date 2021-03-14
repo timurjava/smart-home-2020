@@ -23,14 +23,14 @@ class EventProcessorTest {
     List<Door> doors = Arrays.asList(door1);
     List<Light> lights = Arrays.asList(light1, light2);
     Room room = new Room(lights, doors, "hall");
-    Event event2 = new DoorEvent("3", DoorTypeEvent.DOOR_CLOSE);
-    Event event1 = new LightEvent("1", LightTypeEvent.LIGHT_ON);
+    Event event2 = new DoorEvent("3", States.DOOR_CLOSED);
+    Event event1 = new LightEvent("1", States.LIGHT_ON);
     List<Room> roomList = Arrays.asList(room);
     SmartHome smartHome = new SmartHome(roomList);
-    EventProcessor eventProcessor = new EventProcessor(new ArrayList<EventHandler>(Arrays.asList(new SecurityProcessorDecorator(new LightEventHandler(smartHome), sender, smartHome ),
-            new SecurityProcessorDecorator(new DoorEventHandler(smartHome), sender, smartHome ),
-            new SecurityProcessorDecorator(new HallDoorEventHandler(smartHome), sender, smartHome ),
-            new AlarmEventHandler(smartHome))));
+    EventProcessor eventProcessor = new EventProcessor(new ArrayList<EventHandlerMy>(Arrays.asList(new SecurityProcessorDecorator(new LightEventHandlerMy(smartHome), sender, smartHome ),
+            new SecurityProcessorDecorator(new DoorEventHandlerMy(smartHome), sender, smartHome ),
+            new SecurityProcessorDecorator(new HallDoorEventHandlerMy(smartHome), sender, smartHome ),
+            new AlarmEventHandlerMy(smartHome))));
 
 
     @org.junit.jupiter.api.Test

@@ -3,17 +3,17 @@ package ru.sbt.mipt.oop.Events;
 import ru.sbt.mipt.oop.States;
 
 public class LightEvent implements Event {
-    private LightTypeEvent type;
+    private States type;
     private String objectId;
 
-    public LightEvent(String objectId, LightTypeEvent type) {
+    public LightEvent(String objectId, States type) {
         this.objectId = objectId;
         this.type = type;
     }
 
     @Override
     public States getState() {
-        return type.getState();
+        return type;
     }
 
     @Override

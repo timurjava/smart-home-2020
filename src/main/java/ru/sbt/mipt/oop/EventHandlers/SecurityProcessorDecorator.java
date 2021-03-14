@@ -5,12 +5,12 @@ import ru.sbt.mipt.oop.Events.AlarmEvent;
 import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.SmartHome;
 
-public class SecurityProcessorDecorator implements EventHandler {
-    private final EventHandler wrappeeProcessor;
+public class SecurityProcessorDecorator implements EventHandlerMy {
+    private final EventHandlerMy wrappeeProcessor;
     private final Sender messageSender;
     private final SmartHome smartHome;
 
-    public SecurityProcessorDecorator(EventHandler wrappeeProcessor, Sender messageSender,
+    public SecurityProcessorDecorator(EventHandlerMy wrappeeProcessor, Sender messageSender,
                                       SmartHome smartHome) {
         this.wrappeeProcessor = wrappeeProcessor;
         this.messageSender = messageSender;

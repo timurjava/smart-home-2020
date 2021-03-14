@@ -6,10 +6,10 @@ import ru.sbt.mipt.oop.Events.Event;
 import ru.sbt.mipt.oop.SmartHome;
 import ru.sbt.mipt.oop.States;
 
-public class AlarmEventHandler implements EventHandler {
+public class AlarmEventHandlerMy implements EventHandlerMy {
     private SmartHome smartHome;
 
-    public AlarmEventHandler(SmartHome smartHome) {
+    public AlarmEventHandlerMy(SmartHome smartHome) {
         this.smartHome = smartHome;
     }
 

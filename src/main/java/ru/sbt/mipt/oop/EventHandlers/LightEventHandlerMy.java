@@ -6,10 +6,10 @@ import ru.sbt.mipt.oop.Room;
 import ru.sbt.mipt.oop.RoomObjects.Light;
 import ru.sbt.mipt.oop.SmartHome;
 
-public class LightEventHandler implements EventHandler {
+public class LightEventHandlerMy implements EventHandlerMy {
     SmartHome smartHome;
 
-    public LightEventHandler(SmartHome smartHome) {
+    public LightEventHandlerMy(SmartHome smartHome) {
         this.smartHome = smartHome;
     }
 

@@ -3,11 +3,11 @@ package ru.sbt.mipt.oop.Events;
 import ru.sbt.mipt.oop.States;
 
 public class AlarmEvent implements Event {
-    private AlarmTypeEvent type;
+    private States type;
     private String code;
     private String objectId;
 
-    public AlarmEvent(String objectId, AlarmTypeEvent type, String code) {
+    public AlarmEvent(String objectId, States type, String code) {
         this.objectId = objectId;
         this.type = type;
         this.code = code;
@@ -29,7 +29,7 @@ public class AlarmEvent implements Event {
 
     @Override
     public States getState() {
-        return type.getState();
+        return type;
     }
 
     @Override

@@ -2,22 +2,21 @@ package ru.sbt.mipt.oop.EventHandlers;
 
 
 import ru.sbt.mipt.oop.Events.Event;
-import ru.sbt.mipt.oop.SmartHome;
 
 import java.util.List;
 
 public class EventProcessor {
 
-    List<EventHandler> eventHandlers;
+    List<EventHandlerMy> eventHandlerMIES;
 
 
     public EventProcessor(List eventHandlers) {
-        this.eventHandlers = eventHandlers;
+        this.eventHandlerMIES = eventHandlers;
     }
 
     public void handleEvent(Event event) {
         System.out.println("Got event: " + event);
-         eventHandlers.forEach(object -> {
+         eventHandlerMIES.forEach(object -> {
                 object.handleEvent(event);
             });
 

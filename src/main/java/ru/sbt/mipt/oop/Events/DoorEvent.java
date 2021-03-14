@@ -3,17 +3,17 @@ package ru.sbt.mipt.oop.Events;
 import ru.sbt.mipt.oop.States;
 
 public class DoorEvent implements Event {
-    private DoorTypeEvent type;
+    private States type;
     private String objectId;
 
-    public DoorEvent(String objectId, DoorTypeEvent type) {
+    public DoorEvent(String objectId, States type) {
         this.objectId = objectId;
         this.type = type;
     }
 
     @Override
     public States getState() {
-        return type.getState();
+        return type;
     }
 
     @Override
